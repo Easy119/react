@@ -3,15 +3,16 @@ import { Route, Link } from 'react-router-dom'
 import ReactPage from './video/ReactPage'
 import Vue from './video/Vue'
 import Flutter from './video/Flutter'
+import '../style/video.css'
 export default class Video extends Component {
     render() {
         return (
             <div>
                 <div className="topNav">
-                    <ul>
-                        <li><Link to="/video/reactpage/">React教程</Link></li>
-                        <li><Link to="/video/vue/">Vue教程</Link></li>
-                        <li><Link to="/video/flutter/">Flutter教程</Link></li>
+                    <ul className='videoNav'>
+                        <li className='videoNavItem'><Link to="/video/reactpage/">React教程</Link></li>
+                        <li className='videoNavItem'><Link to="/video/vue/">Vue教程</Link></li>
+                        <li className='videoNavItem'><Link to="/video/flutter/">Flutter教程</Link></li>
                     </ul>
                 </div>
                 <div className="videoContent">
