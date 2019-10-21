@@ -9,7 +9,7 @@ class UserService extends Service {
         let rs;
         try {
             let info = await User.insertOne({
-                name: 'zhang san',
+                name: '徐鑫鑫',
                 phone: '177xxxxxxxx'
             });
 

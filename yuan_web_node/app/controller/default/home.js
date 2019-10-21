@@ -7,6 +7,7 @@ class HomeController extends Controller {
         const { ctx } = this;
         // let result = await ctx.service.mysql.find("news_titles", { id: 1 });
         let result = await ctx.service.user.register();
+        console.log(result)
         this.ctx.body = JSON.stringify(result)
     }
     async search() {
@@ -14,13 +15,9 @@ class HomeController extends Controller {
 
         let result = await db.collection('user').findOne({
             // some query here
-            name: 'xxmy'
-        }, {
-                name: 1,
-                phone: 1,
-                age:1
-            });
-
+            name: '徐鑫鑫'
+        });
+        console.log(result)
         this.ctx.body = result;
     }
 
