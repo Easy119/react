@@ -18,9 +18,12 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [ 'jwt' ];
   config.jwt = {
-    enable: true,
+    enable: false,
     ignore: [ '/default/register', '/default/login' ],
   }
+  config.multipart = {
+    mode: 'file'
+  };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
