@@ -12,7 +12,15 @@ module.exports = {
     package: 'egg-mysql'
   },
   mongodb:{
-    enable: true,
+    enable: false,
     package: 'egg-mongodb'
+  },
+  mongoose:{
+    enable: true, // 开启插件
+		package: 'egg-mongoose'
+  },
+  helper:{
+    enable:true,
+    package:'egg-helper'
   }
 };

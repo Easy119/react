@@ -16,8 +16,11 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1571642028835_3617';
 
   // add your middleware config here
-  config.middleware = [];
-
+  config.middleware = [ 'jwt' ];
+  config.jwt = {
+    enable: true,
+    ignore: [ '/default/register', '/default/login' ],
+  }
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
@@ -47,8 +50,21 @@ module.exports = appInfo => {
       hosts: '127.0.0.1:27017',
       db: 'test',
       query: '',
-    }
+    },
+    mongoose:{
+      client: {
+        app: true,
+        agent: false,
+        url: 'mongodb://127.0.0.1:27017/test',
+        options: {}
+      }
+    },
   };
+  config.security = {
+    csrf: {
+        enable: false,
+    },
+  }
 
   return {
     ...config,
