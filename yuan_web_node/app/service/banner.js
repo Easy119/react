@@ -2,25 +2,17 @@ const Service = require('egg').Service
 
 class BannerService extends Service {
 
-    async index() {
+  
+    async add(file) {
         let res;
         try {
-            let data = await this.ctx.model.Banner.find();
-            this.app.logger.log(data)
-            if (data) {
-                let token = this.ctx.helper.util.loginToken(data)
-                res = {
-                    code: '0',
-                    data: {
-                        token: token,
-                        userInfo: data
-                    }
-                }
-            } else {
-                res = {
-                    code: '1',
-                    data: '查无此人'
-                }
+            let data = await this.ctx.model.Banner.create({
+                url: file
+            })
+            this.app.logger.log(data);
+            res = {
+                code: '0',
+                data: '添加图片成功',
             }
         } catch (e) {
             this.app.logger.error(e && e.stack);
@@ -31,16 +23,15 @@ class BannerService extends Service {
         }
         return res;
     }
-    async add() {
+    async index(){
         let res;
         try {
-            let data = await this.ctx.model.Banner.create({
-                url: 'https://mirror-gold-cdn.xitu.io/168e08d73fe2ec41129?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'
-            })
+            let data = await this.ctx.model.Banner.find();
+            console.log(data)
             this.app.logger.log(data);
             res = {
                 code: '0',
-                data: '添加图片成功',
+                data: data,
             }
         } catch (e) {
             this.app.logger.error(e && e.stack);

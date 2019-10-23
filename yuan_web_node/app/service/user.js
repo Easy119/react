@@ -33,7 +33,7 @@ class UserService extends Service {
                 let _id = data._id;
                 data.token = "";
                 data.expire_time = "";
-                let token = this.ctx.helper.util.loginToken(data);
+                let token = this.ctx.helper.loginToken(data);
                 let userInfo = Object.assign(data,{token:token.token,expire_time:token.expire_time});
                 let update = await this.ctx.model.User.update({_id},userInfo);
                 res = {
@@ -57,15 +57,12 @@ class UserService extends Service {
         }
         return res;
     }
-    async findOne() {
+    async findOne(_id) {
         let res;
         try {
-            let data = await this.ctx.model.User.find({age:17});
+            let data = await this.ctx.model.User.findOne({_id:_id});
             this.app.logger.log(data)
-            res = {
-                code: '0',
-                data: data
-            }
+            res = data.token
         } catch(e) {
             this.app.logger.error(e && e.stack);
             res = {

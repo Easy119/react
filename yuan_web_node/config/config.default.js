@@ -18,12 +18,13 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [ 'jwt' ];
   config.jwt = {
-    enable: false,
+    enable: true,
     ignore: [ '/default/register', '/default/login' ],
   }
   config.multipart = {
     mode: 'file'
   };
+  config.api = 'http://127.0.0.1:7002/'
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',

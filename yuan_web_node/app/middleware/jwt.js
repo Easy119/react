@@ -6,10 +6,9 @@ module.exports = (options, app) => {
         let authToken = ctx.header.authorization
         if (authToken) {
             const res = verifyToken(authToken) // 解密token
-            console.log(res)
             if (res._id) {
-                const redis_token = await this.ctx.model.User.findOne({_id:res._id});;
-                if (redis_token.token == authToken) {
+                const redis_token = await ctx.service.user.findOne(res._id);
+                if (redis_token == authToken) {
                     await next();
                 } else {
                     ctx.body = { code: 50012, msg: '您的账号已在其他地方登录' }
@@ -24,7 +23,7 @@ module.exports = (options, app) => {
     }
 }
 function verifyToken(token) {
-    const cert = fs.readFileSync(path.join(__dirname,'../public/rsa_private_key.pem'))
+    const cert = fs.readFileSync(path.join(__dirname,'../public/rsa_public_key.pem'))
     let res = '';
     try {
         const result = jwt.verify(token,cert,{algorithms: [ 'RS256' ]}) || {};
