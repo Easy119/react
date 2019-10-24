@@ -22,5 +22,9 @@ module.exports = {
   helper:{
     enable:true,
     package:'egg-helper'
-  }
+  },
+  cors: {
+	  enable: true,
+	  package: 'egg-cors'
+	}
 };

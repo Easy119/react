@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
-    "egg-cors": "^2.2.0",
+    "egg-cors": "^2.2.1",
     "egg-helper": "^1.1.5",
     "egg-mongodb": "^1.1.1",
     "egg-mongoose": "^3.2.0",

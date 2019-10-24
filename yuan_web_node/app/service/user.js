@@ -28,6 +28,7 @@ class UserService extends Service {
         let res;
         try {
             let data = await this.ctx.model.User.findOne({name,pwd});
+            console.log(data)
             this.app.logger.log(data)
             if(data){
                 let _id = data._id;
@@ -45,7 +46,7 @@ class UserService extends Service {
             } else{
                 res = {
                     code: '1',
-                    data: '查无此人'
+                    data: '账户密码错误,请重新输入'
                 }
             }
         } catch(e) {
@@ -56,6 +57,34 @@ class UserService extends Service {
             }
         }
         return res;
+    }
+    async update(_id,newPwd) {
+        console.log(_id,newPwd)
+        let res;
+        try {
+            let info = await this.ctx.model.User.update({_id},{pwd:newPwd});
+            console.log(info)
+            this.app.logger.log(info);
+            if(info.ok){
+                res = {
+                    code: '0',
+                    content: 'user update ok'
+                }
+            } else {
+                res = {
+                    code: '-1',
+                    content: 'user update failed'
+                }
+            }
+           
+        } catch (e) {
+            this.app.logger.error(e && e.stack);
+            res = {
+                code: '-2',
+                content: e.message || 'unknown error'
+            }
+        }
+        return res
     }
     async findOne(_id) {
         let res;

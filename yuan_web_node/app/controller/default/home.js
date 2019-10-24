@@ -37,6 +37,22 @@ class HomeController extends Controller {
         }
         this.ctx.body = res
     }
+    async update(){
+        const {ctx} = this;
+        let res;
+        try {
+            let {_id,newPwd} = ctx.request.body;
+            let result = await this.ctx.service.user.update(_id,newPwd);
+            res = result
+        } catch (e) {
+            this.app.logger.error(e && e.stack);
+            res = {
+                code: '-2',
+                content: e.message || 'unknown error'
+            } 
+        }
+        this.ctx.body = res;
+    }
     async getone() {
         let resultAll = await this.ctx.service.user.findOne();
         this.ctx.body = resultAll;

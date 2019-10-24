@@ -19,12 +19,16 @@ module.exports = appInfo => {
   config.middleware = [ 'jwt' ];
   config.jwt = {
     enable: true,
-    ignore: [ '/default/register', '/default/login' ],
+    ignore: [ '/default/user/register', '/default/user/login' ],
   }
   config.multipart = {
     mode: 'file'
   };
-  config.api = 'http://127.0.0.1:7002/'
+  config.api = 'http://127.0.0.1:7001/'
+  config.cors = {
+    origin: 'http://localhost:3000',//匹配规则  域名+端口  *则为全匹配
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
